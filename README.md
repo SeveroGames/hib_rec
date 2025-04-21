@@ -1,16 +1,1 @@
-# hib_rec
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Desarrollo de una aplicación en la que se visualice un mapa con puntos ingresados y cuando se seleccione algún punto se visualice todos los datos antes mencionados. Por otro lado, también hay un campo para ingresar uno de los criterios y si se encuentra de igual manera se visualice la información asociada a este dato.
