@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hib_rec/screens/map_screen.dart';
 import 'add_concesion.dart';
+import 'chat_screen.dart';
 import 'profile_section.dart'; // Tu pantalla de perfil
 
 class MainScreen extends StatefulWidget {
@@ -16,6 +17,7 @@ class _MainScreenState extends State<MainScreen> {
   User? _currentUser;
   Map<String, dynamic>? _userData;
   int _currentIndex = 0;
+  bool _showChatButton = true; // Controla la visibilidad del botón del chatbot
 
   @override
   void initState() {
@@ -40,6 +42,14 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
+  void _openChatbot() {
+    // Navegar a la pantalla del chatbot
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ChatScreen(concessionName: 'Chat')),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +72,39 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
       ),
-      body: _buildCurrentScreen(),
+      body: Stack(
+        children: [
+          _buildCurrentScreen(),
+          // Botón flotante del chatbot
+          if (_showChatButton)
+            Positioned(
+              bottom: 80, // Ajusta esta posición según tus necesidades
+              right: 20,
+              child: FloatingActionButton(
+                onPressed: _openChatbot,
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                child: Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: Colors.blue.shade800.withOpacity(0.7),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 2,
+                    ),
+                  ),
+                  child: const Icon(
+                    Icons.chat,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.blue.shade800,
