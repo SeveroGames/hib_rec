@@ -145,14 +145,6 @@ class _MapaConcesionariosScreenState extends State<MapaConcesionariosScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Mapa de Concesionarios',
-          style: TextStyle(color: Colors.white),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.blue.shade800,
-      ),
       body: Column(
         children: [
           // Filtros en un Card

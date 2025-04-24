@@ -111,16 +111,6 @@ class _AgregarConcesionarioScreenState extends State<AgregarConcesionarioScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          style: TextStyle(
-            color: Colors.white
-          ),
-            'Agregar Nuevo Concesionario'),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.blue.shade800,
-      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Form(

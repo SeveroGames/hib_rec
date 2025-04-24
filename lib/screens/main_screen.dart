@@ -46,7 +46,7 @@ class _MainScreenState extends State<MainScreen> {
   void _openChatbot() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ChatScreen(concessionName: 'ChatBot de Ayuda')),
+      MaterialPageRoute(builder: (context) => const ChatScreen(concessionName: 'Información')),
     );
   }
 
@@ -57,7 +57,7 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'Gestión Hídrica',
+          'GESTIÓN HÍDRICA',
           style: TextStyle(
             color: Colors.white,
             fontSize: 18,
