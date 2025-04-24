@@ -89,28 +89,93 @@ class _AgregarConcesionarioScreenState extends State<AgregarConcesionarioScreen>
         _coordenadaYController.clear();
         setState(() => _selectedPosition = null);
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Concesionario guardado exitosamente'),
-            backgroundColor: Colors.green,
-          ),
+        // Mostrar diálogo de éxito
+        await showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) {
+            // Configurar temporizador para cerrar automáticamente
+            Future.delayed(const Duration(seconds: 2), () {
+              if (mounted) {
+                Navigator.of(context).pop();
+                // Cerrar la pantalla
+                Navigator.of(context).pop();
+              }
+            });
+
+            return Dialog(
+              backgroundColor: Colors.transparent,
+              insetAnimationDuration: const Duration(milliseconds: 300),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      blurRadius: 10,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.check_circle, color: Colors.green, size: 60),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Éxito',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Concesionario guardado exitosamente',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    const SizedBox(height: 16),
+                    LinearProgressIndicator(
+                      backgroundColor: Colors.grey[200],
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.green[400]!),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
         );
 
-        Navigator.pop(context);
+        // Cerrar la pantalla después de confirmar
+        if (mounted) {
+          Navigator.pop(context);
+        }
       } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Error al guardar: ${e.toString()}'),
-            backgroundColor: Colors.red,
-          ),
-        );
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Error al guardar: ${e.toString()}'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
       }
     }
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Agregar Concesionario'),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Form(
